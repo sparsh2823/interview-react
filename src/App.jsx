@@ -117,18 +117,22 @@ function InformationTable({userInfo}) {
           <th style={style.tableCell}>Address</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>{userInfo[0]}</td>
-          <td>{userInfo[1]}</td>
-          <td>{userInfo[2]}</td>
+      {userInfo?.length > 0 && <tbody>
+        {userInfo.map((info,id)=>{
+          return(
+          <tr key={id}>
+          <td>{info.firstName}</td>
+          <td>{info.lastName}</td>
+          <td>{info.address}</td>
        </tr>
-      </tbody>
+          )
+        })}
+      </tbody>}
     </table>
   );
 }
 
-function Application(props) {
+function Application() {
 
   const [firstName,setFirstName]=useState("")
   const [lastName,setLastName]=useState("")
@@ -147,9 +151,7 @@ function Application(props) {
         setUserInfo={setUserInfo}/>
         
       <InformationTable
-        // firstName={firstName}  
-        // lastName={lastName}
-        // address={address}
+ 
         userInfo={userInfo}
        
         
